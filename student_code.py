@@ -24,7 +24,14 @@ class KnowledgeBase(object):
             fact (Fact or Rule): Fact or Rule we're asserting in the format produced by read.py
         """
         print("Asserting {!r}".format(fact))
+
         if isinstance(fact, Fact):
+
+            for somefact in self.facts:
+                if match(somefact.statement, fact.statement, None):
+                    print("repeat!!")
+                    return None
+
             self.facts.append(fact)
         else:
             print("{!r} is not a Fact object".format(fact))
